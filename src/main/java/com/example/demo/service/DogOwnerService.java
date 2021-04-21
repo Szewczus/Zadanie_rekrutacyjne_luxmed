@@ -25,12 +25,14 @@ public class DogOwnerService {
             dogOwner.setEmail(dogOwnerDto.getEmail());
             return dogOwnerRepository.save(dogOwner);
     }
-    @Transactional
-    public void deleteDogOwner(DogOwnerDto dogOwnerDto){
-        dogOwnerRepository.deleteDogOwnerByEmail(dogOwnerDto.getEmail());
-    }
+
 
     public List<DogOwner> findAll(){
         return dogOwnerRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteDogOwner(DogOwnerDto dogOwnerDto){
+        dogOwnerRepository.deleteDogOwnerByEmail(dogOwnerDto.getEmail());
     }
 }

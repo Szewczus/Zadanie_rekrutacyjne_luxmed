@@ -8,6 +8,7 @@ import com.example.demo.repo.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -22,12 +23,18 @@ public class DogService {
         Dog dog = new Dog();
         dog.setName(dogDto.getName());
         dog.setAge(dogDto.getAge());
+        dog.setDog_owner_dog(dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog()));
         return dogRepository.save(dog);
 
     }
 
     public List<Dog> findAll(){
         return dogRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteDog(DogDto dogDto){
+        dogRepository.deleteDogById(dogDto.getId());
     }
 
 }

@@ -28,7 +28,7 @@ public class DogOwnerController {
     @DeleteMapping("delete/dogowner")
     ResponseEntity deleteDogOwner(@RequestBody DogOwnerDto dogOwnerDto){
         dogOwnerService.deleteDogOwner(dogOwnerDto);
-        return ResponseEntity.ok("Usunieto");
+        return ResponseEntity.ok("usunieto");
     }
 
 

@@ -8,10 +8,7 @@ import com.example.demo.repo.DogRepository;
 import com.example.demo.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,11 @@ public class DogController {
     @GetMapping("dogs")
     ResponseEntity<List<Dog>>findAllDogs(){
         return ResponseEntity.ok(dogService.findAll());
+    }
+
+    @DeleteMapping("delete/dog")
+    ResponseEntity<String> deleteDogByEmail(DogDto dogDto){
+        dogService.deleteDog(dogDto);
+        return ResponseEntity.ok("usunięto");
     }
 }

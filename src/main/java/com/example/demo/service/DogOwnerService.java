@@ -19,11 +19,17 @@ public class DogOwnerService {
     DogRepository dogRepository;
 
     public DogOwner saveDogOwner(DogOwnerDto dogOwnerDto){
+        if(dogOwnerRepository.existsDogOwnerByEmail(dogOwnerDto.getEmail())){
+            return null;
+        }
+        else {
             DogOwner dogOwner = new DogOwner();
             dogOwner.setName(dogOwnerDto.getName());
             dogOwner.setSurname(dogOwnerDto.getSurname());
             dogOwner.setEmail(dogOwnerDto.getEmail());
             return dogOwnerRepository.save(dogOwner);
+        }
+
     }
 
 

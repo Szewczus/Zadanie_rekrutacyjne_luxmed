@@ -34,6 +34,13 @@ public class DogOwner {
         this.email = email;
     }
 
+    public DogOwner(Long id, @NotNull() String name, @NotNull() String surname, @NotNull() String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

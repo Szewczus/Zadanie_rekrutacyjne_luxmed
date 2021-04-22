@@ -20,9 +20,14 @@ public class DogOwnerController {
     ResponseEntity saveDogOwner(@RequestBody DogOwnerDto dogOwnerDto){
         DogOwner dogOwner = dogOwnerService.saveDogOwner(dogOwnerDto);
         if(dogOwner==null){
-            return ResponseEntity.ok("taki obiekt o takim emailu już istnieje");
+            log.info("taki właściciel o takim emailu już istnieje");
+            return ResponseEntity.ok("taki właściciel o takim emailu już istnieje");
         }
-        return ResponseEntity.ok(dogOwner);
+        else {
+            log.info("dodano do bazy nowego właściciela");
+            return ResponseEntity.ok(dogOwner);
+        }
+
     }
 
     @GetMapping("dogowners")
@@ -33,6 +38,7 @@ public class DogOwnerController {
     @DeleteMapping("delete/dogowner")
     ResponseEntity deleteDogOwner(@RequestBody DogOwnerDto dogOwnerDto){
         dogOwnerService.deleteDogOwner(dogOwnerDto);
+        log.info("usunieto dogownera");
         return ResponseEntity.ok("usunieto");
     }
 

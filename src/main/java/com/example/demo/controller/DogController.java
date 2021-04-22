@@ -30,8 +30,19 @@ public class DogController {
     }
 
     @DeleteMapping("delete/dog")
-    ResponseEntity<String> deleteDogByEmail(DogDto dogDto){
+    ResponseEntity deleteDog(@RequestBody DogDto dogDto){
         dogService.deleteDog(dogDto);
         return ResponseEntity.ok("usunięto");
+    }
+
+    @PostMapping("edit/dog")
+    ResponseEntity editDogById( @RequestBody DogDto dogDto){
+        Dog dog = dogService.editDog(dogDto);
+        if(dog != null){
+            return ResponseEntity.ok(dog);
+        }
+        else {
+            return ResponseEntity.ok("takiego psa o takim id nie ma w bazie");
+        }
     }
 }

@@ -12,5 +12,4 @@ public class DogOwnerDto {
     String name;
     String surname;
     String email;
-    Long dog_owner_dog;
 }

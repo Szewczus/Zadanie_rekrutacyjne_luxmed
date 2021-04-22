@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DogOwnerRepository extends JpaRepository<DogOwner, Long> {
     public Boolean existsDogOwnerByEmail(String email);
-    public DogOwner findDogOwnerById(Long id);
+    public DogOwner findDogOwnerByEmail(String email);
     public void deleteDogOwnerByEmail(String email);
 }

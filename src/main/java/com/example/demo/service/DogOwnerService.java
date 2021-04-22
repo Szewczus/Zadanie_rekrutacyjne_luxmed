@@ -35,4 +35,17 @@ public class DogOwnerService {
     public void deleteDogOwner(DogOwnerDto dogOwnerDto){
         dogOwnerRepository.deleteDogOwnerByEmail(dogOwnerDto.getEmail());
     }
+
+    public DogOwner editDogOwner(DogOwnerDto dogOwnerDto){
+        DogOwner dogOwner = dogOwnerRepository.findDogOwnerByEmail(dogOwnerDto.getEmail());
+        if(dogOwner!=null){
+            dogOwner.setName(dogOwnerDto.getName());
+            dogOwner.setSurname(dogOwnerDto.getSurname());
+            dogOwner.setEmail(dogOwnerDto.getEmail());
+            return dogOwnerRepository.save(dogOwner);
+        }
+        else{
+            return null;
+        }
+    }
 }

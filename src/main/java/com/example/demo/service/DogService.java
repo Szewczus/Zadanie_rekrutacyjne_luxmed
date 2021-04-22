@@ -23,9 +23,9 @@ public class DogService {
         Dog dog = new Dog();
         dog.setName(dogDto.getName());
         dog.setAge(dogDto.getAge());
-        dog.setDog_owner_dog(dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog()));
+        DogOwner dogOwner =dogOwnerRepository.findDogOwnerByEmail(dogDto.getEmailDogOwner());
+        dog.setDog_owner_dog(dogOwner);
         return dogRepository.save(dog);
-
     }
 
     public List<Dog> findAll(){
@@ -35,6 +35,21 @@ public class DogService {
     @Transactional
     public void deleteDog(DogDto dogDto){
         dogRepository.deleteDogById(dogDto.getId());
+    }
+
+
+    public Dog editDog( DogDto dogDto){
+        Dog dog = dogRepository.findDogById(dogDto.getId());
+        if(dog!=null){
+            dog.setName(dogDto.getName());
+            dog.setAge(dogDto.getAge());
+            DogOwner dogOwner = dogOwnerRepository.findDogOwnerByEmail(dogDto.getEmailDogOwner());
+            dog.setDog_owner_dog(dogOwner);
+            return dogRepository.save(dog);
+        }
+        else{
+            return null;
+        }
     }
 
 }

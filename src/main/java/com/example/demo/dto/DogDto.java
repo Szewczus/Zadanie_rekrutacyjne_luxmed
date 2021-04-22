@@ -11,5 +11,5 @@ public class DogDto {
     Long id;
     String name;
     Integer age;
-    Long dog_owner_dog;
+    String emailDogOwner;
 }

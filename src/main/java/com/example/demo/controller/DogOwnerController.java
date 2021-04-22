@@ -31,6 +31,17 @@ public class DogOwnerController {
         return ResponseEntity.ok("usunieto");
     }
 
+    @PostMapping("edit/dogowner")
+    ResponseEntity editDogOwner( @RequestBody DogOwnerDto dogOwnerDto){
+        DogOwner dogOwner = dogOwnerService.editDogOwner(dogOwnerDto);
+        if(dogOwner!=null){
+            return ResponseEntity.ok(dogOwner);
+        }
+        else
+        {
+            return ResponseEntity.ok("nie ma takiego właściciela psa o takim emailu");
+        }
+    }
 
 
 }

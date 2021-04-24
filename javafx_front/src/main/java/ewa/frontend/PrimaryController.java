@@ -34,22 +34,34 @@ public class PrimaryController implements Initializable {
     private TableView tableView1;
 
     @FXML
-    private TextArea id_;
+    private TextArea idDogOwner;
 
     @FXML
-    private TextArea name_;
+    private TextArea nameDogOwner;
 
     @FXML
-    private TextArea surname_;
+    private TextArea surnameDogOwner;
 
     @FXML
-    private TextArea email_;
+    private TextArea emailDogOwner;
+
+    @FXML
+    private TextArea idDogTextArea;
+
+    @FXML
+    private TextArea nameDogTextArea;
+
+    @FXML
+    private TextArea ageDogTextArea;
+
+    @FXML
+    private TextArea dogownerDogTextArea;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Person> personList = ServerConnect.connectToDogOwner();
-        System.out.println(personList);
+        //System.out.println(personList);
         TableColumn id = new TableColumn("id");
         TableColumn name = new TableColumn("name");
         TableColumn surname = new TableColumn("surname");
@@ -70,24 +82,28 @@ public class PrimaryController implements Initializable {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 Person person = ((Person)observable.getValue());
-                System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
-                id_.setText(person.getId().toString());
-                name_.setText(person.getName());
-                surname_.setText(person.getSurname());
-                email_.setText(person.getEmail());
+                //System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
+                idDogOwner.setText(person.getId().toString());
+                nameDogOwner.setText(person.getName());
+                surnameDogOwner.setText(person.getSurname());
+                emailDogOwner.setText(person.getEmail());
             }
         });
 
         List<Dog> listDog = ServerConnect.connectToDog();
+        //nazwanie kolumn
         TableColumn idDog = new TableColumn("id");
         TableColumn nameDog = new TableColumn("name");
         TableColumn ageDog = new TableColumn("age");
         TableColumn idDogDogOwner = new TableColumn("dog_owner_dog");
+        //dodanie kolumn do tabelki
         tableView1.getColumns().add(idDog);
         tableView1.getColumns().add(nameDog);
         tableView1.getColumns().add(ageDog);
         tableView1.getColumns().add(idDogDogOwner);
+        //przeparsowanie na FXCollections
         final ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+        //wstawienie do kolumn odpowiednich wartości i wyjecie po odpowienich nazwach z jsona
         idDog.setCellValueFactory(new PropertyValueFactory<Person, Long>("id"));
         nameDog.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         ageDog.setCellValueFactory(new PropertyValueFactory<Person, String>("age"));
@@ -95,16 +111,26 @@ public class PrimaryController implements Initializable {
         tableView1.setItems(data1);
 
 
+        //listener do 2 tabeli i wpisywanie w odpoiednie miejsca pul z tabeli w pola pod spodem
+        tableView1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                Dog dog = ((Dog)observable.getValue());
+                idDogTextArea.setText(dog.getId().toString());
+                nameDogTextArea.setText(dog.getName());
+                ageDogTextArea.setText(dog.getAge().toString());
+                dogownerDogTextArea.setText(dog.getDog_owner_dog().toString());
+            }
+        });
 
-        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+
+        /*EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                /*String string[]=e.toString().split("\"");
-                System.out.println(string[0]);*/
                 System.out.println(e.toString());
             }
         };
-        tableView.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        tableView.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);*/
 
 
     }

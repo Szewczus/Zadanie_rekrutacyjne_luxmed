@@ -28,17 +28,43 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Id: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Label text="Name: " GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label text="Surname: " GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label text="Email: " GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label text="DogOwner id: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="DogOwner name: " GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="DogOwner surname: " GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label text="DogOwner email: " GridPane.columnIndex="3" GridPane.rowIndex="0" />
 
-            <TextArea  GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="id_"/>
-            <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="name_" />
-            <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="surname_"/>
-            <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="email_"/>
+            <TextArea  GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="idDogOwner"/>
+            <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="nameDogOwner" />
+            <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="surnameDogOwner"/>
+            <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="emailDogOwner"/>
          </children>
       </GridPane>
+
+       <GridPane>
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label text="Dog id: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+               <Label text="Dog name: " GridPane.columnIndex="1" GridPane.rowIndex="0" />
+               <Label text="Dog age: " GridPane.columnIndex="2" GridPane.rowIndex="0" />
+               <Label text="Dog owner: " GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+               <TextArea  GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="idDogTextArea"/>
+               <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="nameDogTextArea" />
+               <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="ageDogTextArea"/>
+               <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="dogownerDogTextArea"/>
+           </children>
+       </GridPane>
 
    </children>
    <padding>

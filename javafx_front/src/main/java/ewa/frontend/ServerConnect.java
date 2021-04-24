@@ -82,10 +82,8 @@ public class ServerConnect {
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setPrettyPrinting();
             Gson gson = gsonBuilder.create();
-
             list = gson.fromJson(inline, new TypeToken<List<Dog>>() {}.getType());
-
-            list.forEach(x->System.out.println(x.getId() + " "+x.getName() + " " + x.getAge() + " " + x.getDog_owner_dog()));
+            list.forEach(x->System.out.println("Dog: " + x.getId() + " "+x.getName() + " " + x.getAge() + " " + x.getDog_owner_dog()));
 
         }
         catch (MalformedURLException e){

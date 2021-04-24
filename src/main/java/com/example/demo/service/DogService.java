@@ -23,7 +23,7 @@ public class DogService {
         Dog dog = new Dog();
         dog.setName(dogDto.getName());
         dog.setAge(dogDto.getAge());
-        DogOwner dogOwner =dogOwnerRepository.findDogOwnerByEmail(dogDto.getEmailDogOwner());
+        DogOwner dogOwner =dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
         dog.setDog_owner_dog(dogOwner);
         return dogRepository.save(dog);
     }
@@ -43,7 +43,7 @@ public class DogService {
         if(dog!=null){
             dog.setName(dogDto.getName());
             dog.setAge(dogDto.getAge());
-            DogOwner dogOwner = dogOwnerRepository.findDogOwnerByEmail(dogDto.getEmailDogOwner());
+            DogOwner dogOwner = dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
             dog.setDog_owner_dog(dogOwner);
             return dogRepository.save(dog);
         }

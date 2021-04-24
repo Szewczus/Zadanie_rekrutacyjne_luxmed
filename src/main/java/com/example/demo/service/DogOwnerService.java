@@ -43,7 +43,7 @@ public class DogOwnerService {
     }
 
     public DogOwner editDogOwner(DogOwnerDto dogOwnerDto){
-        DogOwner dogOwner = dogOwnerRepository.findDogOwnerByEmail(dogOwnerDto.getEmail());
+        DogOwner dogOwner = dogOwnerRepository.findDogOwnerById(dogOwnerDto.getId());
         if(dogOwner!=null){
             dogOwner.setName(dogOwnerDto.getName());
             dogOwner.setSurname(dogOwnerDto.getSurname());

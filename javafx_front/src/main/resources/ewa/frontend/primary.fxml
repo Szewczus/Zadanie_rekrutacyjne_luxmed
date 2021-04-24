@@ -38,8 +38,9 @@
             <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="nameDogOwnerTextArea" />
             <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="surnameDogOwnerTextArea"/>
             <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="emailDogOwnerTextArea"/>
-             <Button text="Zapisz"  GridPane.columnIndex="4" GridPane.rowIndex="3" fx:id="dogOwnerSave"/>
-            <Button text="Usuń"  GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="dogOwnerDelete"/>
+            <Button text="Zapisz"  GridPane.columnIndex="4" GridPane.rowIndex="3" fx:id="dogOwnerSave"/>
+            <Button text="Edytuj"  GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="dogOwnerEdit"/>
+            <Button text="Usuń"  GridPane.columnIndex="6" GridPane.rowIndex="3" fx:id="dogOwnerDelete"/>
          </children>
       </GridPane>
 
@@ -68,7 +69,8 @@
                <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="ageDogTextArea"/>
                <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="dogownerDogTextArea"/>
                <Button text="Zapisz"  GridPane.columnIndex="4" GridPane.rowIndex="3" fx:id="dogSave"/>
-               <Button text="Usuń"  GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="dogDelete"/>
+               <Button text="Edytuj"  GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="dogEdit"/>
+               <Button text="Usuń"  GridPane.columnIndex="6" GridPane.rowIndex="3" fx:id="dogDelete"/>
            </children>
        </GridPane>
 

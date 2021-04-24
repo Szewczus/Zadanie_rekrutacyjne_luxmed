@@ -54,6 +54,9 @@ public class Dog {
     }
 
     public Long getDog_owner_dog() {
+        if(dog_owner_dog == null){
+            return -1L;
+        }
         return dog_owner_dog.getId();
     }
 

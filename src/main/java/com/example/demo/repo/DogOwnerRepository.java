@@ -10,4 +10,5 @@ public interface DogOwnerRepository extends JpaRepository<DogOwner, Long> {
     public Boolean existsDogOwnerByEmail(String email);
     public DogOwner findDogOwnerById(Long id);
     public void deleteDogOwnerByEmail(String email);
+    public Boolean existsDogOwnerById(Long id);
 }

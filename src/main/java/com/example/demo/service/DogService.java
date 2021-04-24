@@ -5,6 +5,7 @@ import com.example.demo.entity.Dog;
 import com.example.demo.entity.DogOwner;
 import com.example.demo.repo.DogOwnerRepository;
 import com.example.demo.repo.DogRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DogService {
     @Autowired
     private DogRepository dogRepository;
@@ -23,8 +25,13 @@ public class DogService {
         Dog dog = new Dog();
         dog.setName(dogDto.getName());
         dog.setAge(dogDto.getAge());
-        DogOwner dogOwner =dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
-        dog.setDog_owner_dog(dogOwner);
+
+        if(dogOwnerRepository.existsDogOwnerById(dogDto.getDog_owner_dog())){
+            log.info("boolean: "+dogOwnerRepository.existsDogOwnerById(dogDto.getDog_owner_dog())+" id " + dogDto.getDog_owner_dog());
+            DogOwner dogOwner =dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
+            dog.setDog_owner_dog(dogOwner);
+        }
+
         return dogRepository.save(dog);
     }
 
@@ -38,13 +45,16 @@ public class DogService {
     }
 
 
-    public Dog editDog( DogDto dogDto){
+    public Dog editDog(DogDto dogDto){
         Dog dog = dogRepository.findDogById(dogDto.getId());
         if(dog!=null){
             dog.setName(dogDto.getName());
             dog.setAge(dogDto.getAge());
-            DogOwner dogOwner = dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
-            dog.setDog_owner_dog(dogOwner);
+            if(dogOwnerRepository.existsDogOwnerById(dogDto.getDog_owner_dog())){
+                log.info("boolean: "+dogOwnerRepository.existsDogOwnerById(dogDto.getDog_owner_dog())+" id " + dogDto.getDog_owner_dog());
+                DogOwner dogOwner =dogOwnerRepository.findDogOwnerById(dogDto.getDog_owner_dog());
+                dog.setDog_owner_dog(dogOwner);
+            }
             return dogRepository.save(dog);
         }
         else{

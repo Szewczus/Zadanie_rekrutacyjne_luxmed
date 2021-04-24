@@ -3,7 +3,6 @@ package ewa.frontend;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,7 +37,7 @@ public class ServerConnect {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
             String output="";
-            System.out.println("Output from server... \n");
+            //System.out.println("Output from server... \n");
             String inline="";
             while ((output = bufferedReader.readLine())!=null){
                 inline+=output;
@@ -50,6 +49,43 @@ public class ServerConnect {
 
             list = gson.fromJson(inline, new TypeToken<List<Person>>() {}.getType());
             //list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
+
+        }
+        catch (MalformedURLException e){
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static List<Dog> connectToDog(){
+        List<Dog> list = new ArrayList<>();
+        try {
+            URL url = new URL("http://localhost:8080/dogs");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.setRequestMethod("GET");
+            if(connection.getResponseCode()!=200){
+                throw new RuntimeException("Failed: HTTP error code: " + connection.getResponseCode());
+            }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String output="";
+            System.out.println("Output from server... \n");
+            String inline="";
+
+            while ((output = bufferedReader.readLine())!=null){
+                inline+=output;
+            }
+            System.out.println(inline);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            Gson gson = gsonBuilder.create();
+
+            list = gson.fromJson(inline, new TypeToken<List<Dog>>() {}.getType());
+
+            list.forEach(x->System.out.println(x.getName() + " " + x.getAge() + " " + x.getDog_owner_dog()));
 
         }
         catch (MalformedURLException e){

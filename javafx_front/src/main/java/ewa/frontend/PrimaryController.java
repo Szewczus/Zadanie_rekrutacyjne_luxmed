@@ -23,6 +23,9 @@ public class PrimaryController implements Initializable {
     @FXML
     private TableView tableView;
 
+    @FXML
+    private TableView tableView1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,5 +43,17 @@ public class PrimaryController implements Initializable {
         email.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
         tableView.setItems(data);
 
+        List<Dog> listDog = ServerConnect.connectToDog();
+        TableColumn nameDog = new TableColumn("name");
+        TableColumn ageDog = new TableColumn("age");
+        TableColumn idDogDogOwner = new TableColumn("dog_owner_dog");
+        tableView1.getColumns().add(nameDog);
+        tableView1.getColumns().add(ageDog);
+        tableView1.getColumns().add(idDogDogOwner);
+        final ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+        nameDog.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        ageDog.setCellValueFactory(new PropertyValueFactory<Person, String>("age"));
+        idDogDogOwner.setCellValueFactory(new PropertyValueFactory<Person, Long>("dog_owner_dog"));
+        tableView1.setItems(data1);
     }
 }

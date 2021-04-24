@@ -15,7 +15,7 @@
       </TableView>
 
       <Label style="-fx-font: NORMAL 20 Tahoma;" text="Psy" GridPane.columnIndex="0" GridPane.rowIndex="0"></Label>
-      <TableView fx:id="tableView2" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <TableView fx:id="tableView1" GridPane.columnIndex="0" GridPane.rowIndex="1">
       </TableView>
    </children>
    <padding>

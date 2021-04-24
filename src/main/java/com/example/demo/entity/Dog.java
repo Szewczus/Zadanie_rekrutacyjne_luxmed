@@ -53,8 +53,8 @@ public class Dog {
         this.age = age;
     }
 
-    public DogOwner getDog_owner_dog() {
-        return dog_owner_dog;
+    public Long getDog_owner_dog() {
+        return dog_owner_dog.getId();
     }
 
     public void setDog_owner_dog(DogOwner dog_owner_dog) {

@@ -4,13 +4,13 @@ package ewa.frontend;
 public class Dog {
     private String name;
     private Integer age;
-    private Integer idDogDogOwer;
+    private Long dog_owner_dog;
 
 
-    public Dog(String name, Integer age, Integer idDogDogOwer) {
+    public Dog(String name, Integer age, Long idDogDogOwer) {
         this.name = name;
         this.age = age;
-        this.idDogDogOwer = idDogDogOwer;
+        this.dog_owner_dog = idDogDogOwer;
     }
 
     public String getName() {
@@ -29,11 +29,11 @@ public class Dog {
         this.age = age;
     }
 
-    public Integer getIdDogDogOwer() {
-        return idDogDogOwer;
+    public Long getDog_owner_dog() {
+        return dog_owner_dog;
     }
 
-    public void setIdDogDogOwer(Integer idDogDogOwer) {
-        this.idDogDogOwer = idDogDogOwer;
+    public void setDog_owner_dog(Long dog_owner_dog) {
+        this.dog_owner_dog = dog_owner_dog;
     }
 }

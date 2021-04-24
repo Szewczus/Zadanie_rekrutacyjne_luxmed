@@ -24,6 +24,7 @@ public class LoadDatabase {
         //Dog dog = Dog.builder().name("Fifek").age(4).dog_owner_dog(dogOwner).build();
         return args -> {
             log.info("Preloading" + dogOwnerRepository.save(dogOwner));
+            log.info("Preloading" + dogOwnerRepository.save(dogOwner1));
             log.info("Preload" + dogRepository.save(dog1));
             /*log.info("Preload" + dogRepository.save(dog2));*/
         };

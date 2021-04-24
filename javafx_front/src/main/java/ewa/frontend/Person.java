@@ -6,9 +6,9 @@ public class Person {
     //private final SimpleStringProperty surname = new SimpleStringProperty("");
     //private final SimpleStringProperty email = new SimpleStringProperty("");
 
-    String name;
-    String surname;
-    String email;
+    private String name;
+    private String surname;
+    private String email;
 
 
     public Person() {

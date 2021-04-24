@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 public class ServerConnect {
 
@@ -24,7 +25,8 @@ public class ServerConnect {
         this.output = output;
     }
 
-    public void connect(){
+    public static List<Person> connect(){
+        List<Person> list = new ArrayList<>();
         try {
             URL url = new URL("http://localhost:8080/dogowners");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -34,22 +36,29 @@ public class ServerConnect {
                 throw new RuntimeException("Failed: HTTP error code: " + connection.getResponseCode());
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String output;
 
+            String output="";
             System.out.println("Output from server... \n");
+            String inline="";
             while ((output = bufferedReader.readLine())!=null){
-
+                inline+=output;
 
             }
+            System.out.println("inline: "+ inline + ".");
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            System.out.println("ELO\n" + inline + "\nELO");
+            Gson gson = gsonBuilder.create();
 
+            list = gson.fromJson(inline, new TypeToken<List<Person>>() {}.getType());
+            list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
 
-
-            connection.disconnect();
         }
         catch (MalformedURLException e){
 
-        } catch (IOException e) {
+        } catch (IOException/* | JSONException*/ e) {
             e.printStackTrace();
         }
+        return list;
     }
 }

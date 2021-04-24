@@ -10,36 +10,13 @@
 <VBox alignment="CENTER" prefHeight="431.0" prefWidth="409.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ewa.frontend.PrimaryController">
    <children>
       <!--<Label text="Primary View" />-->
-      <Label style="-fx-font: NORMAL 20 Tahoma;" text="Właściciele psów" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      </Label>
+      <Label style="-fx-font: NORMAL 20 Tahoma;" text="Właściciele psów" GridPane.columnIndex="0" GridPane.rowIndex="0"></Label>
       <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
-         <columns>
-            <TableColumn  prefWidth="122.0000057220459" text="Name">
-               <cellValueFactory><PropertyValueFactory property="name" fx:id="name"/> </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="131.60003662109375" text="Surname">
-               <cellValueFactory><PropertyValueFactory property="surname" fx:id="surname"/> </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="114.79998779296875" text="Email">
-               <cellValueFactory><PropertyValueFactory property="email" fx:id="email"/> </cellValueFactory>
-            </TableColumn>
-         </columns>
-         <items>
-           <!-- <FXCollections fx:factory="observableArrayList">
-               <Person name="Jacob" surname="Smith"
-                       email="jacob.smith@example.com"/>
-               <Person name="Isabella" surname="Johnson"
-                       email="isabella.johnson@example.com"/>
-               <Person name="Ethan" surname="Williams"
-                       email="ethan.williams@example.com"/>
-               <Person name="Emma" surname="Jones"
-                       email="emma.jones@example.com"/>
-               <Person name="Michael" surname="Brown"
-                       email="michael.brown@example.com"/>
-            </FXCollections>-->
-         </items>
       </TableView>
-      <Button fx:id="primaryButton" alignment="BOTTOM_CENTER" onAction="#switchToSecondary" prefHeight="0.0" prefWidth="156.0" text="Switch to Secondary View" />
+
+      <Label style="-fx-font: NORMAL 20 Tahoma;" text="Psy" GridPane.columnIndex="0" GridPane.rowIndex="0"></Label>
+      <TableView fx:id="tableView2" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      </TableView>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

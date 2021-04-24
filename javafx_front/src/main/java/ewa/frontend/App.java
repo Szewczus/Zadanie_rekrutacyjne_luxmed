@@ -2,6 +2,7 @@ package ewa.frontend;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * JavaFX App
@@ -43,28 +47,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        /*try {
-            URL url = new URL("http://localhost:8080/dogowners");
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
-            int responsecode = conn.getResponseCode();
-
-            if (responsecode !=200){
-                throw new RuntimeException("HttpResponseCode: "+responsecode);
-            }
-            else {
-                Scanner scanner = new Scanner(url.openStream());
-                String inline="";
-                while (scanner.hasNext()){
-                    inline+=scanner.nextLine();
-                }
-                System.out.println(inline);
-            }
-        } catch (IOException e) {
-
-        }*/
-        try {
+/*        try {
             URL url = new URL("http://localhost:8080/dogowners");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
@@ -74,45 +57,28 @@ public class App extends Application {
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            String output;
+            String output="";
             System.out.println("Output from server... \n");
             String inline="";
             while ((output = bufferedReader.readLine())!=null){
                 inline+=output;
-                //System.out.println(inline+".");
+
             }
+            System.out.println("inline: "+ inline + ".");
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setPrettyPrinting();
             System.out.println("ELO\n" + inline + "\nELO");
-            String deleted = inline.substring(1,inline.length()-1);
-            System.out.println("ELO\n" + deleted + "\nELO");
             Gson gson = gsonBuilder.create();
-            Person person = gson.fromJson(deleted, Person.class);
-            System.out.println("Person: " + person.getName() +" + " + person.getSurname());
 
-
-
-            //ServerConnect connect = new ServerConnect();
-            //connect.connect();
-            System.out.println(inline);
-            String [] s = inline.split(",");
-            String [] s1 = s[0].split(":", 2);
-
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line);
-            }
-
-            /*JSONObject json = new JSONObject(sb.toString());
-            System.out.println(json);*/
+            List<Person> list = gson.fromJson(inline, new TypeToken<List<Person>>() {}.getType());
+            list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
 
         }
         catch (MalformedURLException e){
 
-        } catch (IOException/* | JSONException*/ e) {
+        } catch (IOException*//* | JSONException*//* e) {
             e.printStackTrace();
-        }
+        }*/
 
         launch();
     }

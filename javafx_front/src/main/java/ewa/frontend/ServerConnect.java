@@ -25,7 +25,7 @@ public class ServerConnect {
         this.output = output;
     }
 
-    public static List<Person> connect(){
+    public static List<Person> connectToDogOwner(){
         List<Person> list = new ArrayList<>();
         try {
             URL url = new URL("http://localhost:8080/dogowners");
@@ -44,19 +44,17 @@ public class ServerConnect {
                 inline+=output;
 
             }
-            System.out.println("inline: "+ inline + ".");
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setPrettyPrinting();
-            System.out.println("ELO\n" + inline + "\nELO");
             Gson gson = gsonBuilder.create();
 
             list = gson.fromJson(inline, new TypeToken<List<Person>>() {}.getType());
-            list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
+            //list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
 
         }
         catch (MalformedURLException e){
 
-        } catch (IOException/* | JSONException*/ e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return list;

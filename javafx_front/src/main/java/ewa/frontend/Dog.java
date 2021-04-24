@@ -1,39 +1,39 @@
 package ewa.frontend;
 
-import javafx.beans.property.SimpleStringProperty;
 
 public class Dog {
-    private final SimpleStringProperty name = new SimpleStringProperty("");
-    private final SimpleStringProperty age = new SimpleStringProperty();
+    private String name;
+    private Integer age;
+    private Integer idDogDogOwer;
 
 
-    public Dog() {
-        this("", "");
-    }
-
-
-    public Dog(String name, String age) {
-        setName(name);
-        setAge(age);
+    public Dog(String name, Integer age, Integer idDogDogOwer) {
+        this.name = name;
+        this.age = age;
+        this.idDogDogOwer = idDogDogOwer;
     }
 
     public String getName() {
-        return name.get();
+        return name;
     }
 
-    public void setName(String fName) {
-        name.set(fName);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAge() {
-        return age.get();
+    public Integer getAge() {
+        return age;
     }
 
-    public void setAge(String fAge) {
-        age.set(fAge);
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public static Dog stringParsing(String json){
-        return new Dog();
+    public Integer getIdDogDogOwer() {
+        return idDogDogOwer;
+    }
+
+    public void setIdDogDogOwer(Integer idDogDogOwer) {
+        this.idDogDogOwer = idDogDogOwer;
     }
 }

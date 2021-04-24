@@ -28,7 +28,6 @@ public class App extends Application {
 
     //private ConfigurableApplicationContext applicationContext;
     private static Scene scene;
-    public static PropertyValueFactory propertyValueFactory;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -47,39 +46,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-/*        try {
-            URL url = new URL("http://localhost:8080/dogowners");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.setRequestMethod("GET");
-            if(connection.getResponseCode()!=200){
-                throw new RuntimeException("Failed: HTTP error code: " + connection.getResponseCode());
-            }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            String output="";
-            System.out.println("Output from server... \n");
-            String inline="";
-            while ((output = bufferedReader.readLine())!=null){
-                inline+=output;
-
-            }
-            System.out.println("inline: "+ inline + ".");
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.setPrettyPrinting();
-            System.out.println("ELO\n" + inline + "\nELO");
-            Gson gson = gsonBuilder.create();
-
-            List<Person> list = gson.fromJson(inline, new TypeToken<List<Person>>() {}.getType());
-            list.forEach(x->System.out.println(x.getEmail() + " "+ x.getName()));
-
-        }
-        catch (MalformedURLException e){
-
-        } catch (IOException*//* | JSONException*//* e) {
-            e.printStackTrace();
-        }*/
-
         launch();
     }
 

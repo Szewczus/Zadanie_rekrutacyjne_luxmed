@@ -26,7 +26,7 @@ public class PrimaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Person> personList = ServerConnect.connect();
+        List<Person> personList = ServerConnect.connectToDogOwner();
         System.out.println(personList);
         TableColumn name = new TableColumn("name");
         TableColumn surname = new TableColumn("surname");

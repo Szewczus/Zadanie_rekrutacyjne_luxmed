@@ -8,17 +8,13 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 public class PrimaryController implements Initializable {
 
@@ -34,16 +30,16 @@ public class PrimaryController implements Initializable {
     private TableView tableView1;
 
     @FXML
-    private TextArea idDogOwner;
+    private TextArea idDogOwnerTextArea;
 
     @FXML
-    private TextArea nameDogOwner;
+    private TextArea nameDogOwnerTextArea;
 
     @FXML
-    private TextArea surnameDogOwner;
+    private TextArea surnameDogOwnerTextArea;
 
     @FXML
-    private TextArea emailDogOwner;
+    private TextArea emailDogOwnerTextArea;
 
     @FXML
     private TextArea idDogTextArea;
@@ -56,6 +52,15 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private TextArea dogownerDogTextArea;
+
+    @FXML
+    private Button dogOwnerDelete;
+
+    @FXML
+    private Button dogSave;
+
+    @FXML
+    private Button dogOwnerSave;
 
 
     @Override
@@ -83,10 +88,10 @@ public class PrimaryController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 Person person = ((Person)observable.getValue());
                 //System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
-                idDogOwner.setText(person.getId().toString());
-                nameDogOwner.setText(person.getName());
-                surnameDogOwner.setText(person.getSurname());
-                emailDogOwner.setText(person.getEmail());
+                idDogOwnerTextArea.setText(person.getId().toString());
+                nameDogOwnerTextArea.setText(person.getName());
+                surnameDogOwnerTextArea.setText(person.getSurname());
+                emailDogOwnerTextArea.setText(person.getEmail());
             }
         });
 
@@ -112,6 +117,7 @@ public class PrimaryController implements Initializable {
 
 
         //listener do 2 tabeli i wpisywanie w odpoiednie miejsca pul z tabeli w pola pod spodem
+
         tableView1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -120,18 +126,67 @@ public class PrimaryController implements Initializable {
                 nameDogTextArea.setText(dog.getName());
                 ageDogTextArea.setText(dog.getAge().toString());
                 dogownerDogTextArea.setText(dog.getDog_owner_dog().toString());
+
+            }
+        });
+
+        dogSave.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dog doge = new Dog();
+                if(ageDogTextArea.getText() == "" || dogownerDogTextArea.getText() == "" ||  nameDogTextArea.getText() == ""){
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                }
+                else
+                {
+                    Integer age =Integer.parseInt(ageDogTextArea.getText());
+                    Long dog_owner_dog =Long.parseLong(dogownerDogTextArea.getText());
+                    System.out.println("Long dogowner: "+ dog_owner_dog);
+                    doge.setId(1L);
+                    doge.setName(nameDogTextArea.getText());
+                    doge.setAge(age);
+                    doge.setDog_owner_dog(dog_owner_dog);
+                    System.out.println("id"+ doge.getId() + "Age: "+doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
+                    ServerConnect.postDog(doge);
+                }
+            }
+        });
+
+        dogOwnerSave.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Person person = new Person();
+                if(nameDogOwnerTextArea.getText() == "" || surnameDogOwnerTextArea.getText() == "" ||  emailDogOwnerTextArea.getText() == ""){
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                }
+                else
+                {
+                    person.setId(1L);
+                    person.setName(nameDogOwnerTextArea.getText());
+                    person.setSurname(surnameDogOwnerTextArea.getText());
+                    person.setEmail(emailDogOwnerTextArea.getText());
+                    ServerConnect.postPerson(person);
+                }
             }
         });
 
 
-        /*EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+/*        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                System.out.println(e.toString());
+                Dog doge = new Dog();
+                System.out.println("kliknieto");
+                Integer age =Integer.parseInt(ageDogTextArea.getText());
+                Long dog_owner_dog =Long.parseLong(dogownerDogTextArea.getText());
+                doge.setName(nameDogTextArea.getText());
+                doge.setAge(age);
+                doge.setDog_owner_dog(dog_owner_dog);
+                System.out.println(doge.getAge());
+                ServerConnect.postDog(doge);
             }
         };
-        tableView.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);*/
-
+        dogOwnerDelete.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);*/
+        /*ServerConnect.postDog();*/
 
     }
 }

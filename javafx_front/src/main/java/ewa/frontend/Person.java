@@ -19,6 +19,10 @@ public class Person {
         this.email = email;
     }
 
+    public Person() {
+
+    }
+
     public Long getId() {
         return id;
     }

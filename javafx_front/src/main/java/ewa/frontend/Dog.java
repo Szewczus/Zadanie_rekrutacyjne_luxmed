@@ -14,6 +14,9 @@ public class Dog {
         this.dog_owner_dog = idDogDogOwer;
         this.id = id;
     }
+    public Dog() {
+
+    }
 
     public Long getId() {
         return id;

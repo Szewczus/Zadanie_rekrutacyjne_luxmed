@@ -86,16 +86,20 @@ public class PrimaryController implements Initializable {
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Person person = ((Person)observable.getValue());
-                //System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
-                idDogOwnerTextArea.setText(person.getId().toString());
-                nameDogOwnerTextArea.setText(person.getName());
-                surnameDogOwnerTextArea.setText(person.getSurname());
-                emailDogOwnerTextArea.setText(person.getEmail());
+                try {
+                    Person person = ((Person) observable.getValue());
+                    //System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
+                    idDogOwnerTextArea.setText(person.getId().toString());
+                    nameDogOwnerTextArea.setText(person.getName());
+                    surnameDogOwnerTextArea.setText(person.getSurname());
+                    emailDogOwnerTextArea.setText(person.getEmail());
+                } catch (Exception e) {
+
+                }
             }
         });
 
-        List<Dog> listDog = ServerConnect.connectToDog();
+
         //nazwanie kolumn
         TableColumn idDog = new TableColumn("id");
         TableColumn nameDog = new TableColumn("name");
@@ -106,13 +110,15 @@ public class PrimaryController implements Initializable {
         tableView1.getColumns().add(nameDog);
         tableView1.getColumns().add(ageDog);
         tableView1.getColumns().add(idDogDogOwner);
-        //przeparsowanie na FXCollections
-        final ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+
         //wstawienie do kolumn odpowiednich wartości i wyjecie po odpowienich nazwach z jsona
         idDog.setCellValueFactory(new PropertyValueFactory<Person, Long>("id"));
         nameDog.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         ageDog.setCellValueFactory(new PropertyValueFactory<Person, String>("age"));
         idDogDogOwner.setCellValueFactory(new PropertyValueFactory<Person, Long>("dog_owner_dog"));
+        //przeparsowanie na FXCollections
+        List<Dog> listDog = ServerConnect.connectToDog();
+        ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
         tableView1.setItems(data1);
 
 
@@ -121,12 +127,16 @@ public class PrimaryController implements Initializable {
         tableView1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Dog dog = ((Dog)observable.getValue());
-                idDogTextArea.setText(dog.getId().toString());
-                nameDogTextArea.setText(dog.getName());
-                ageDogTextArea.setText(dog.getAge().toString());
-                dogownerDogTextArea.setText(dog.getDog_owner_dog().toString());
+                try {
+                    Dog dog = ((Dog) observable.getValue());
+                    idDogTextArea.setText(dog.getId().toString());
+                    nameDogTextArea.setText(dog.getName());
+                    ageDogTextArea.setText(dog.getAge().toString());
+                    dogownerDogTextArea.setText(dog.getDog_owner_dog().toString());
+                }
+                catch (Exception e){
 
+                }
             }
         });
 
@@ -134,20 +144,21 @@ public class PrimaryController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Dog doge = new Dog();
-                if(ageDogTextArea.getText() == "" || dogownerDogTextArea.getText() == "" ||  nameDogTextArea.getText() == ""){
+                if (ageDogTextArea.getText() == "" || dogownerDogTextArea.getText() == "" || nameDogTextArea.getText() == "") {
                     System.out.println("Uzupełnij wszystkie dane!!!");
-                }
-                else
-                {
-                    Integer age =Integer.parseInt(ageDogTextArea.getText());
-                    Long dog_owner_dog =Long.parseLong(dogownerDogTextArea.getText());
-                    System.out.println("Long dogowner: "+ dog_owner_dog);
+                } else {
+                    Integer age = Integer.parseInt(ageDogTextArea.getText());
+                    Long dog_owner_dog = Long.parseLong(dogownerDogTextArea.getText());
+                    System.out.println("Long dogowner: " + dog_owner_dog);
                     doge.setId(1L);
                     doge.setName(nameDogTextArea.getText());
                     doge.setAge(age);
                     doge.setDog_owner_dog(dog_owner_dog);
-                    System.out.println("id"+ doge.getId() + "Age: "+doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
+                    System.out.println("id" + doge.getId() + "Age: " + doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
                     ServerConnect.postDog(doge);
+                    List<Dog> listDog = ServerConnect.connectToDog();
+                    ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+                    tableView1.setItems(data1);
                 }
             }
         });
@@ -156,16 +167,17 @@ public class PrimaryController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Person person = new Person();
-                if(nameDogOwnerTextArea.getText() == "" || surnameDogOwnerTextArea.getText() == "" ||  emailDogOwnerTextArea.getText() == ""){
+                if (nameDogOwnerTextArea.getText() == "" || surnameDogOwnerTextArea.getText() == "" || emailDogOwnerTextArea.getText() == "") {
                     System.out.println("Uzupełnij wszystkie dane!!!");
-                }
-                else
-                {
+                } else {
                     person.setId(1L);
                     person.setName(nameDogOwnerTextArea.getText());
                     person.setSurname(surnameDogOwnerTextArea.getText());
                     person.setEmail(emailDogOwnerTextArea.getText());
                     ServerConnect.postPerson(person);
+                    List<Person> listDogOwner = ServerConnect.connectToDogOwner();
+                    ObservableList<Person> data1 = FXCollections.observableArrayList(listDogOwner);
+                    tableView.setItems(data1);
                 }
             }
         });

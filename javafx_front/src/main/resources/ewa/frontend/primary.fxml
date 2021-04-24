@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="431.0" prefWidth="409.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ewa.frontend.PrimaryController">
+   <children>
+      <!--<Label text="Primary View" />-->
+      <Label style="-fx-font: NORMAL 20 Tahoma;" text="Właściciele psów" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      </TableView>
+
+      <Label style="-fx-font: NORMAL 20 Tahoma;" text="Psy" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      <TableView fx:id="tableView1" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      </TableView>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="DogOwner id: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="DogOwner name: " GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="DogOwner surname: " GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label text="DogOwner email: " GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+            <TextArea  GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="idDogOwner"/>
+            <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="nameDogOwner" />
+            <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="surnameDogOwner"/>
+            <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="emailDogOwner"/>
+         </children>
+      </GridPane>
+
+       <GridPane>
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label text="Dog id: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+               <Label text="Dog name: " GridPane.columnIndex="1" GridPane.rowIndex="0" />
+               <Label text="Dog age: " GridPane.columnIndex="2" GridPane.rowIndex="0" />
+               <Label text="Dog owner: " GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+               <TextArea  GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="idDogTextArea"/>
+               <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="nameDogTextArea" />
+               <TextArea  GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="ageDogTextArea"/>
+               <TextArea  GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="dogownerDogTextArea"/>
+           </children>
+       </GridPane>
+
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

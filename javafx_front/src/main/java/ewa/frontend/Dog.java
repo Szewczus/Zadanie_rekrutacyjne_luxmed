@@ -1,32 +1,18 @@
-package com.example.demo.entity;
+package ewa.frontend;
 
 
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-@Entity
 public class Dog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull()
     private String name;
-
-    @NotNull()
     private Integer age;
+    private Long dog_owner_dog;
 
-    @ManyToOne
-    private DogOwner dog_owner_dog;
 
-    public Dog() {
-    }
-
-    public Dog(@NotNull() String name, @NotNull() Integer age, DogOwner dog_owner_dog) {
+    public Dog(Long id ,String name, Integer age, Long idDogDogOwer) {
         this.name = name;
         this.age = age;
-        this.dog_owner_dog = dog_owner_dog;
+        this.dog_owner_dog = idDogDogOwer;
+        this.id = id;
     }
 
     public Long getId() {
@@ -54,10 +40,10 @@ public class Dog {
     }
 
     public Long getDog_owner_dog() {
-        return dog_owner_dog.getId();
+        return dog_owner_dog;
     }
 
-    public void setDog_owner_dog(DogOwner dog_owner_dog) {
+    public void setDog_owner_dog(Long dog_owner_dog) {
         this.dog_owner_dog = dog_owner_dog;
     }
 }

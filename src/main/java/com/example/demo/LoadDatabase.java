@@ -18,6 +18,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(DogOwnerRepository dogOwnerRepository, DogRepository dogRepository){
         DogOwner dogOwner =new DogOwner("Ewa", "Szewczak", "ewus9999@gmail.com");
+        DogOwner dogOwner1 =new DogOwner("Ola", "Kok", "ola_kok@gmail.com");
         Dog dog1 = new Dog("Fifek", 4, dogOwner);
         /*Dog dog2 = new Dog("Felek", 2, dogOwner);*/
         //Dog dog = Dog.builder().name("Fifek").age(4).dog_owner_dog(dogOwner).build();

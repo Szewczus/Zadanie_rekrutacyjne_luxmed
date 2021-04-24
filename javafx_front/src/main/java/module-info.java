@@ -1,7 +1,10 @@
-module com.frontend {
+module ewa.frontend {
     requires javafx.controls;
     requires javafx.fxml;
+    requires spring.boot.autoconfigure;
+    requires spring.context;
+    requires com.google.gson;
 
-    opens com.frontend to javafx.fxml;
-    exports com.frontend;
+    opens ewa.frontend to javafx.fxml, com.google.gson;
+    exports ewa.frontend;
 }

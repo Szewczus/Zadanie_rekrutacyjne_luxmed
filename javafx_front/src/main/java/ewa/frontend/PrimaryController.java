@@ -1,6 +1,7 @@
-package com.frontend;
+package ewa.frontend;
 
 import java.io.IOException;
+
 import javafx.fxml.FXML;
 
 public class PrimaryController {
@@ -9,4 +10,5 @@ public class PrimaryController {
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
+
 }

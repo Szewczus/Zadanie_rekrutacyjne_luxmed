@@ -1,4 +1,4 @@
-package com.frontend;
+package ewa.frontend;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

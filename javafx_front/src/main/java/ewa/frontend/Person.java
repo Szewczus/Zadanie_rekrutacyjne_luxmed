@@ -5,20 +5,26 @@ public class Person {
     //private final SimpleStringProperty name = new SimpleStringProperty("");
     //private final SimpleStringProperty surname = new SimpleStringProperty("");
     //private final SimpleStringProperty email = new SimpleStringProperty("");
-
+    private Long id;
     private String name;
     private String surname;
     private String email;
 
 
-    public Person() {
-        this("", "", "");
-    }
 
-    public Person(String name, String surname, String email) {
+    public Person(Long id, String name, String surname, String email) {
+        this.id=id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

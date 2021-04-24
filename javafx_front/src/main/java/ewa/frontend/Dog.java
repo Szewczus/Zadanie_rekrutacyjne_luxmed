@@ -2,15 +2,25 @@ package ewa.frontend;
 
 
 public class Dog {
+    private Long id;
     private String name;
     private Integer age;
     private Long dog_owner_dog;
 
 
-    public Dog(String name, Integer age, Long idDogDogOwer) {
+    public Dog(Long id ,String name, Integer age, Long idDogDogOwer) {
         this.name = name;
         this.age = age;
         this.dog_owner_dog = idDogDogOwer;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

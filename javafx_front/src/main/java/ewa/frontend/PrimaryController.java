@@ -57,10 +57,19 @@ public class PrimaryController implements Initializable {
     private Button dogOwnerDelete;
 
     @FXML
+    private Button dogDelete;
+
+    @FXML
     private Button dogSave;
 
     @FXML
     private Button dogOwnerSave;
+
+    @FXML
+    private Button dogOwnerEdit;
+
+    @FXML
+    private Button dogEdit;
 
 
     @Override
@@ -181,6 +190,104 @@ public class PrimaryController implements Initializable {
                 }
             }
         });
+
+        dogOwnerDelete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Person person = new Person();
+                if (nameDogOwnerTextArea.getText() == "" || surnameDogOwnerTextArea.getText() == "" || emailDogOwnerTextArea.getText() == "") {
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                } else {
+                    person.setId(1L);
+                    person.setName(nameDogOwnerTextArea.getText());
+                    person.setSurname(surnameDogOwnerTextArea.getText());
+                    person.setEmail(emailDogOwnerTextArea.getText());
+                    ServerConnect.deletePerson(person);
+                    List<Person> listDogOwner = ServerConnect.connectToDogOwner();
+                    ObservableList<Person> data1 = FXCollections.observableArrayList(listDogOwner);
+                    tableView.setItems(data1);
+                }
+            }
+        });
+
+
+        dogDelete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dog doge = new Dog();
+                if (idDog.getText() == "" || ageDogTextArea.getText() == "" || dogownerDogTextArea.getText() == "" || nameDogTextArea.getText() == "") {
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                } else {
+                    Integer age = Integer.parseInt(ageDogTextArea.getText());
+                    System.out.println("id: "+ idDogTextArea.getText());
+                    Long id = Long.parseLong(idDogTextArea.getText());
+                    Long dog_owner_dog = Long.parseLong(dogownerDogTextArea.getText());
+                    System.out.println("Long dogowner: " + dog_owner_dog);
+                    doge.setId(id);
+                    doge.setName(nameDogTextArea.getText());
+                    doge.setAge(age);
+                    doge.setDog_owner_dog(dog_owner_dog);
+                    System.out.println("id" + doge.getId() + "Age: " + doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
+                    ServerConnect.deleteDog(doge);
+                    List<Dog> listDog = ServerConnect.connectToDog();
+                    ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+                    tableView1.setItems(data1);
+                }
+            }
+        });
+
+        dogOwnerEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Person person = new Person();
+                if (nameDogOwnerTextArea.getText() == "" || surnameDogOwnerTextArea.getText() == "" || emailDogOwnerTextArea.getText() == "") {
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                } else {
+                    Long id = Long.parseLong(idDogOwnerTextArea.getText());
+                    person.setId(id);
+                    person.setName(nameDogOwnerTextArea.getText());
+                    person.setSurname(surnameDogOwnerTextArea.getText());
+                    person.setEmail(emailDogOwnerTextArea.getText());
+                    ServerConnect.editPerson(person);
+                    List<Person> listDogOwner = ServerConnect.connectToDogOwner();
+                    ObservableList<Person> data1 = FXCollections.observableArrayList(listDogOwner);
+                    tableView.setItems(data1);
+                }
+            }
+        });
+
+        dogEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dog doge = new Dog();
+                if (idDog.getText() == "" || ageDogTextArea.getText() == "" || dogownerDogTextArea.getText() == "" || nameDogTextArea.getText() == "") {
+                    System.out.println("Uzupełnij wszystkie dane!!!");
+                } else {
+                    Integer age = Integer.parseInt(ageDogTextArea.getText());
+                    //System.out.println("id: "+ idDogTextArea.getText());
+                    Long id = Long.parseLong(idDogTextArea.getText());
+                    Long dog_owner_dog = Long.parseLong(dogownerDogTextArea.getText());
+                    //System.out.println("Long dogowner: " + dog_owner_dog);
+                    doge.setId(id);
+                    doge.setName(nameDogTextArea.getText());
+                    doge.setAge(age);
+                    doge.setDog_owner_dog(dog_owner_dog);
+                    //System.out.println("id" + doge.getId() + "Age: " + doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
+                    ServerConnect.editDog(doge);
+                    List<Dog> listDog = ServerConnect.connectToDog();
+                    ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
+                    tableView1.setItems(data1);
+                }
+            }
+        });
+
+        /*dogEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });*/
+
 
 
 /*        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {

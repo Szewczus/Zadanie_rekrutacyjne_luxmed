@@ -20,12 +20,12 @@ public class LoadDatabase {
         DogOwner dogOwner =new DogOwner("Ewa", "Szewczak", "ewus9999@gmail.com");
         DogOwner dogOwner1 =new DogOwner("Ola", "Kok", "ola_kok@gmail.com");
         Dog dog1 = new Dog("Fifek", 4, dogOwner);
-        //Dog dog2 = new Dog("Roxi", 4, dogOwner1);
+        Dog dog2 = new Dog("Roxi", 4, dogOwner1);
         return args -> {
             log.info("Preloading" + dogOwnerRepository.save(dogOwner));
             log.info("Preloading" + dogOwnerRepository.save(dogOwner1));
             log.info("Preload" + dogRepository.save(dog1));
-            //log.info("Preload" + dogRepository.save(dog2));
+            log.info("Preload" + dogRepository.save(dog2));
         };
     }
 }

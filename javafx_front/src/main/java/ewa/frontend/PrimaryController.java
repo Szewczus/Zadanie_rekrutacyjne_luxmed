@@ -130,8 +130,6 @@ public class PrimaryController implements Initializable {
                     System.out.println("Exception: "+e.getLocalizedMessage());
                     List<Dog> listDog = new ArrayList<>();
                     final ObservableList<Dog> data2 = FXCollections.observableArrayList(listDog);
-
-
                     idDog.setCellValueFactory(new PropertyValueFactory<Dog, Long>("id"));
                     nameDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("name"));
                     ageDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("age"));
@@ -199,6 +197,7 @@ public class PrimaryController implements Initializable {
                     doge.setDog_owner_dog(dog_owner_dog);
                     System.out.println("id" + doge.getId() + "Age: " + doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
                     ServerConnect.postDog(doge);
+
                     List<Dog> listDog = ServerConnect.connectToDog();
                     ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
                     tableView1.setItems(data1);
@@ -263,6 +262,8 @@ public class PrimaryController implements Initializable {
                     doge.setDog_owner_dog(dog_owner_dog);
                     System.out.println("id" + doge.getId() + "Age: " + doge.getAge() + " " + doge.getName() + " " + doge.getDog_owner_dog());
                     ServerConnect.deleteDog(doge);
+
+
                     List<Dog> listDog = ServerConnect.connectToDog();
                     ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
                     tableView1.setItems(data1);

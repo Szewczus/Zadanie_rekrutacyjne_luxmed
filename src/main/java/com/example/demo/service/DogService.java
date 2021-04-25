@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.DogDto;
+import com.example.demo.dto.DogOwnerDto;
 import com.example.demo.entity.Dog;
 import com.example.demo.entity.DogOwner;
 import com.example.demo.repo.DogOwnerRepository;
@@ -60,6 +61,10 @@ public class DogService {
         else{
             return null;
         }
+    }
+
+    public List<Dog> getDogsByDogOwners(DogOwnerDto dogOwnerDto){
+        return dogRepository.findAllDogsDogowners(dogOwnerDto.getId());
     }
 
 }

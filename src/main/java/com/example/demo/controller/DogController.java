@@ -45,4 +45,10 @@ public class DogController {
             return ResponseEntity.ok("takiego psa o takim id nie ma w bazie");
         }
     }
+
+    @PostMapping("get/dogowner/dogs")
+    ResponseEntity<List<Dog>>getDogownerDogs(@RequestBody DogOwnerDto dogOwnerDto){
+        List<Dog> listDogs= dogService.getDogsByDogOwners(dogOwnerDto);
+        return ResponseEntity.ok(listDogs);
+    }
 }

@@ -2,6 +2,7 @@ package ewa.frontend;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -92,23 +93,6 @@ public class PrimaryController implements Initializable {
         tableView.setItems(data);
 
 
-        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                try {
-                    Person person = ((Person) observable.getValue());
-                    //System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
-                    idDogOwnerTextArea.setText(person.getId().toString());
-                    nameDogOwnerTextArea.setText(person.getName());
-                    surnameDogOwnerTextArea.setText(person.getSurname());
-                    emailDogOwnerTextArea.setText(person.getEmail());
-                } catch (Exception e) {
-
-                }
-            }
-        });
-
-
         //nazwanie kolumn
         TableColumn idDog = new TableColumn("id");
         TableColumn nameDog = new TableColumn("name");
@@ -120,7 +104,56 @@ public class PrimaryController implements Initializable {
         tableView1.getColumns().add(ageDog);
         tableView1.getColumns().add(idDogDogOwner);
 
-        //wstawienie do kolumn odpowiednich wartości i wyjecie po odpowienich nazwach z jsona
+        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                try {
+                    Person person = ((Person) observable.getValue());
+                    System.out.println("Observable: " + ((Person)observable.getValue()).getName() + " " +((Person)observable.getValue()).getSurname());
+                    idDogOwnerTextArea.setText(person.getId().toString());
+                    nameDogOwnerTextArea.setText(person.getName());
+                    surnameDogOwnerTextArea.setText(person.getSurname());
+                    emailDogOwnerTextArea.setText(person.getEmail());
+                    System.out.println("halo?? ");
+                    List<Dog> listDog = ServerConnect.getDogownerDogs(person);
+                    System.out.println("halo?? "+listDog.get(0).getName() + listDog.get(0).getAge() + listDog.get(0).getDog_owner_dog());
+                    final ObservableList<Dog> data2 = FXCollections.observableArrayList(listDog);
+
+
+                    idDog.setCellValueFactory(new PropertyValueFactory<Dog, Long>("id"));
+                    nameDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("name"));
+                    ageDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("age"));
+                    idDogDogOwner.setCellValueFactory(new PropertyValueFactory<Dog, String>("dog_owner_dog"));
+                    tableView1.setItems(data2);
+
+                } catch (Exception e) {
+                    System.out.println("Exception: "+e.getLocalizedMessage());
+                    List<Dog> listDog = new ArrayList<>();
+                    final ObservableList<Dog> data2 = FXCollections.observableArrayList(listDog);
+
+
+                    idDog.setCellValueFactory(new PropertyValueFactory<Dog, Long>("id"));
+                    nameDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("name"));
+                    ageDog.setCellValueFactory(new PropertyValueFactory<Dog, String>("age"));
+                    idDogDogOwner.setCellValueFactory(new PropertyValueFactory<Dog, String>("dog_owner_dog"));
+                    tableView1.setItems(data2);
+                }
+            }
+        });
+
+
+/*        //nazwanie kolumn
+        TableColumn idDog = new TableColumn("id");
+        TableColumn nameDog = new TableColumn("name");
+        TableColumn ageDog = new TableColumn("age");
+        TableColumn idDogDogOwner = new TableColumn("dog_owner_dog");
+        //dodanie kolumn do tabelki
+        tableView1.getColumns().add(idDog);
+        tableView1.getColumns().add(nameDog);
+        tableView1.getColumns().add(ageDog);
+        tableView1.getColumns().add(idDogDogOwner);*/
+
+   /*     //wstawienie do kolumn odpowiednich wartości i wyjecie po odpowienich nazwach z jsona
         idDog.setCellValueFactory(new PropertyValueFactory<Person, Long>("id"));
         nameDog.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         ageDog.setCellValueFactory(new PropertyValueFactory<Person, String>("age"));
@@ -130,7 +163,7 @@ public class PrimaryController implements Initializable {
         List<Dog> listDog = ServerConnect.connectToDog();
         ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);
         tableView1.setItems(data1);
-
+*/
 
         //listener do 2 tabeli i wpisywanie w odpoiednie miejsca pul z tabeli w pola pod spodem
 

@@ -367,4 +367,62 @@ public class ServerConnect {
 
         }
     }
+    public static List<Dog> getDogownerDogs(Person person){
+        List<Dog> list = new ArrayList<>();
+        try {
+            URL url = new URL("http://localhost:8080/get/dogowner/dogs");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            /*String input = " {\n" +
+                    "        \"name\": \"Kola\",\n" +
+                    "        \"age\": \"1\",\n" +
+                    "        \"emailDogOwner\": \"ewus9999@gmail.com\"\n" +
+                    "}";*/
+
+            String input ="";
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            input = gson.toJson(person);
+            System.out.println("gson: "+gson.toJson(person));
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
+            System.out.println("....");
+
+            /*if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }*/
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            String INPUT ="";
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+                INPUT+=output;
+            }
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            gson = gsonBuilder.create();
+
+            list = gson.fromJson(INPUT, new TypeToken<List<Dog>>() {}.getType());
+
+
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+        return list;
+    }
 }

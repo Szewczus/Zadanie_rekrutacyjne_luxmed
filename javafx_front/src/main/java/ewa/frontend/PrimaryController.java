@@ -125,6 +125,7 @@ public class PrimaryController implements Initializable {
         nameDog.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         ageDog.setCellValueFactory(new PropertyValueFactory<Person, String>("age"));
         idDogDogOwner.setCellValueFactory(new PropertyValueFactory<Person, Long>("dog_owner_dog"));
+
         //przeparsowanie na FXCollections
         List<Dog> listDog = ServerConnect.connectToDog();
         ObservableList<Dog> data1 = FXCollections.observableArrayList(listDog);

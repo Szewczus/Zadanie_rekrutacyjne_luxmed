@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.DogOwnerDto;
 import com.example.demo.entity.DogOwner;
 import com.example.demo.service.DogOwnerService;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
